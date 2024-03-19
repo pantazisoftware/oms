@@ -22,18 +22,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    $data = Order::select('id', 'pickup_date', 'name', 'weight')->get();
-    $events = [];
-    foreach ($data as $order) {
-        $events[] = [
-            'title' => $order->name,
-            'start' => $order->pickup_date,
-            // 'end' => $order->pickup_date
-        ];
-    }
-    return view('dashboard', compact('events'));
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -48,7 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/notes/store', [NotesController::class, 'store'])->name('notes.store');
     Route::post('/orders/storePayment', [OrdersController::class, 'storePayment'])->name('orders.storePayments');
     Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics'); // Add this line
-
+    Route::get('/', [AnalyticsController::class, 'dashboard'])->name('dashboard'); // Add this line
 
 });
 

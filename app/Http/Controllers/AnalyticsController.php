@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use Akaunting\Apexcharts\Chart;
+use App\Charts\MonthlyAdvanceIncome;
 use App\Charts\MonthlyOrdersChart;
 use App\Models\Order;
 use Carbon\Carbon;
@@ -53,5 +54,20 @@ class AnalyticsController extends Controller
         $change2 = round($change2, 2);
 
         return view('analytics', ['chart' => $chart->build(), 'currentWeekOrder' => $currentWeekOrder, 'totalWeekWeight' => $totalWeekWeight, 'pastWeekWeight' => $pastWeekWeight, 'pastWeekOrder' => $pastWeekOrder, 'change' => $change, 'changeWeight' => $change2, 'totalWeight' => $totalWeight, 'totalOrders' => $totalOrders, 'totalClients' => $totalClients]);
+    }
+
+
+    public function dashboard(MonthlyAdvanceIncome $chart)
+    {
+        $data = Order::get();
+        $events = [];
+        foreach ($data as $order) {
+            $events[] = [
+                'title' => $order->name . " - " . $order->weight . " kg",
+                'start' => $order->pickup_date,
+            ];
+        }
+        //return view('dashboard', compact('events'));
+        return view('dashboard', ['events' => $events, 'chart' => $chart->build()]);
     }
 }

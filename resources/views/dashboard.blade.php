@@ -9,9 +9,11 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <p>grafic cu incasarile in avans pe fiecare zi din luna curenta (areachart)</p>
+                    <div class="mb-10">
+                        {!! $chart->container() !!}
+                    </div>
                    <div class="grid grid-cols-1 gap-6 md:grid-cols-3 columns-3">
-                    <div class="inline-flex items-center flex-1 p-6 space-x-6 bg-white rounded-lg shadow-lg">
+                    <div class="inline-flex items-center flex-1 p-6 space-x-6 bg-white rounded-lg shadow">
                                 <div class="p-3 bg-gray-900 rounded-lg shadow-md">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10 text-white">
                                         <path fill-rule="evenodd" d="M7.502 6h7.128A3.375 3.375 0 0 1 18 9.375v9.375a3 3 0 0 0 3-3V6.108c0-1.505-1.125-2.811-2.664-2.94a48.972 48.972 0 0 0-.673-.05A3 3 0 0 0 15 1.5h-1.5a3 3 0 0 0-2.663 1.618c-.225.015-.45.032-.673.05C8.662 3.295 7.554 4.542 7.502 6ZM13.5 3A1.5 1.5 0 0 0 12 4.5h4.5A1.5 1.5 0 0 0 15 3h-1.5Z" clip-rule="evenodd" />
@@ -24,7 +26,7 @@
                                 </div>
 
                     </div>
-                    <div class="inline-flex items-center flex-1 p-6 space-x-6 bg-white rounded-lg shadow-lg">
+                    <div class="inline-flex items-center flex-1 p-6 space-x-6 bg-white rounded-lg shadow">
                                 <div class="p-3 bg-gray-900 rounded-lg shadow-md">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10 text-white">
                                         <path d="M12 7.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
@@ -38,7 +40,7 @@
                                 </div>
 
                     </div>
-                    <div class="inline-flex items-center flex-1 p-6 space-x-6 bg-white rounded-lg shadow-lg">
+                    <div class="inline-flex items-center flex-1 p-6 space-x-6 bg-white rounded-lg shadow">
                                 <div class="p-3 bg-indigo-600 rounded-lg shadow-md">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10 text-white">
                                         <path fill-rule="evenodd" d="M7.502 6h7.128A3.375 3.375 0 0 1 18 9.375v9.375a3 3 0 0 0 3-3V6.108c0-1.505-1.125-2.811-2.664-2.94a48.972 48.972 0 0 0-.673-.05A3 3 0 0 0 15 1.5h-1.5a3 3 0 0 0-2.663 1.618c-.225.015-.45.032-.673.05C8.662 3.295 7.554 4.542 7.502 6ZM13.5 3A1.5 1.5 0 0 0 12 4.5h4.5A1.5 1.5 0 0 0 15 3h-1.5Z" clip-rule="evenodd" />
@@ -65,13 +67,17 @@
                 var calendar = new FullCalendar.Calendar(calendarEl,
 
                 {
-                    initialView: 'timeGridWeek',
+                    themeSystem: 'bootstrap5',
+                    defaultView: 'month',
+                    timeZone: 'local',
                     slotMinTime: '8:00:00',
                     slotMaxTime: '23:59:00',
                     events: @json($events),
-                });
+                }
+                );
                 calendar.render();
             });
         </script>
     @endpush
+    {{ $chart->script() }}
 </x-app-layout>
