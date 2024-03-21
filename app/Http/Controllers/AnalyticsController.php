@@ -67,7 +67,11 @@ class AnalyticsController extends Controller
                 'start' => $order->pickup_date,
             ];
         }
+
+        $upcoming7days = Order::whereBetween('pickup_date', [Carbon::today(), Carbon::today()->addDays(7)])->get();
+        $last7days = Order::whereBetween('created_at', [Carbon::now(), Carbon::now()->subDays(-7)])->get();
+        // dd($last7days);
         //return view('dashboard', compact('events'));
-        return view('dashboard', ['events' => $events, 'chart' => $chart->build()]);
+        return view('dashboard', ['events' => $events, 'chart' => $chart->build(), 'upcoming' => $upcoming7days, 'latest' => $last7days]);
     }
 }

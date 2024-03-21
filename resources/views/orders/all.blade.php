@@ -1,10 +1,20 @@
 <x-app-layout :title="'All Orders'">
+    <div x-data="{ showModal: false, order: [], table: true}">
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('Orders') }}
         </h2>
-        <a href="{{ route('orders.create')}}" class="inline-flex space-x-2 items-center px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-indigo-100 text-sm font-medium hover:text-white hover:shadow rounded">
+        <div class="h-full">
+            <button x-on:click="table = ! open" class="inline-flex items-center h-full px-4 py-2.5 space-x-2 text-sm font-medium bg-gray-200 rounded hover:bg-gray-300 hover:text-black hover:shadow">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 stroke-2">
+  <path fill-rule="evenodd" d="M2.625 6.75a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0A.75.75 0 0 1 8.25 6h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75ZM2.625 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0ZM7.5 12a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12A.75.75 0 0 1 7.5 12Zm-4.875 5.25a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875 0a.75.75 0 0 1 .75-.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+</svg>
+<span>List View</span>
+
+            </button>
+
+            <a href="{{ route('orders.create')}}" class="inline-flex space-x-2 items-center px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-indigo-100 text-sm font-medium hover:text-white hover:shadow rounded">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 stroke-2">
   <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
 </svg>
@@ -12,12 +22,50 @@
             <span>New Order</span>
         </a>
         </div>
+
+        </div>
     </x-slot>
 
-    <div class="py-12" x-data="{ showModal: false, order: [] }">
+    <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+
+                    <div id="table" x-show="table">
+                        <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <th scope="col" class="px-6 py-3">ID</th>
+                                <th scope="col" class="px-6 py-3">Client</th>
+                                <th scope="col" class="px-6 py-3">Weight</th>
+                                <th scope="col" class="px-6 py-3">Pickup At</th>
+                                <th scope="col" class="px-6 py-3">Created At</th>
+                            </thead>
+                            <tbody>
+                                @forelse ($orders2 as $torder)
+                                <tr class="border-b odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 dark:border-gray-700">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $torder->id }}</td>
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        <p>{{ $torder->name }}</p>
+                                        <p>{{ $torder->phone }}</p>
+                                    </td>
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $torder->weight }} kg</td>
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $torder->pickup_date->format('d-m-Y H:i')}}</td>
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $torder->created_at->format('d-m-Y H:i:s')}}</td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" colspan="5">
+                                        <p>No orders for today.</p>
+                                    </td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        <div class="my-3">
+                            {{ $orders2->links()}}
+                        </div>
+                    </div>
+
                     @if($orders->isEmpty())
                     <div class="p-4 my-3 rounded bg-sky-200 text-sky-800">
                         <p>No orders for today.</p>
@@ -275,5 +323,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </x-app-layout>

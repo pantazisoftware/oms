@@ -16,7 +16,8 @@ class OrdersController extends Controller
     {
         // Display all orders
         $orders = Order::orderBy('created_at', 'desc')->with('note')->paginate(6);
-        return view('orders.all', compact('orders'));
+        $orders2 = Order::orderBy('created_at', 'desc')->with('note')->paginate(15);
+        return view('orders.all', compact('orders', 'orders2'));
     }
 
     public function today()
