@@ -1,6 +1,6 @@
 # Orderflow
 
-![Orderflow Logo](./public/img/orderflow-logo.png)
+![Orderflow Logo](./public/img/logo-small.png)
 
 Orderflow is a web application designed to manage all your orders in one place.
 
