@@ -1,6 +1,6 @@
 # Orderflow
 
-![Orderflow Logo](./public/img/orderflow-logo.png | height=300)
+<img src="./public/img/orderflow-logo.png" height="300" alt="Orderflow Logo" />
 
 Orderflow is a web application designed to manage all your orders in one place.
 
