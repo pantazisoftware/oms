@@ -14,10 +14,12 @@
         </div>
     </x-slot>
 
-    <div class="py-12" x-data="{ showModal: false, order: [] }">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+
+    <div class="py-8" x-data="{ showModal: false, order: [] }">
+        <div class="mx-auto max-w-7xl">
+            <div class="overflow-hidden sm:rounded-lg">
+                <div class="p-3 text-gray-900 sm:p-0">
+
                     <h1 class="py-2 pb-4 text-2xl font-bold">General Overview</h1>
                     <div class="flex flex-col gap-6 my-3 mb-8 md:flex-row justify-evenly">
                         <div class="inline-flex items-center flex-1 p-6 space-x-6 bg-white rounded-lg shadow">

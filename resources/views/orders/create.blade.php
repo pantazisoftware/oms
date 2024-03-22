@@ -14,10 +14,10 @@
         </div>
     </x-slot>
 
-    <div class="py-12">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+    <div class="py-8">
+        <div class="mx-auto max-w-7xl">
+            <div class="overflow-hidden sm:rounded-lg">
+                <div class="p-3 text-gray-900 sm:p-0">
 
                     @if ($errors->any())
                     <div class="p-4 bg-red-100 rounded-lg">
@@ -27,7 +27,7 @@
                     </div>
                     @endif
 
-                    <form action="{{ route('orders.store') }}" method="POST" class="flex flex-col w-full space-y-4 md:w-9/12 lg:w-6/12">
+                    <form action="{{ route('orders.store') }}" method="POST" class="flex flex-col w-full p-6 space-y-4 bg-gray-100 rounded-lg md:w-9/12 lg:w-6/12">
                         <div class="flex flex-col space-y-2">
                             <label for="name">Name</label>
                             <input type="text" name="name" value="{{ old('name') }}" id="name" class="px-3 py-2 border border-gray-300 rounded-lg focus:shadow-lg">

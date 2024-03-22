@@ -14,10 +14,10 @@
         </div>
     </x-slot>
 
-   <div class="py-12" x-data="{ showModal: false, order: [] }">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+   <div class="py-8" x-data="{ showModal: false, order: [] }">
+        <div class="mx-auto max-w-7xl">
+            <div class="overflow-hidden sm:rounded-lg">
+                <div class="p-3 text-gray-900 sm:p-0">
                     @if($orders->isEmpty())
                     <div class="p-4 my-3 rounded bg-sky-200 text-sky-800">
                         <p>No orders for today.</p>

@@ -22,7 +22,7 @@
         <script src="{{ @asset('vendor/larapex-charts/apexcharts.js') }}"></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-zinc-50">
+        <div class="min-h-screen bg-white">
             @include('layouts.navigation')
 
             <!-- Page Heading -->

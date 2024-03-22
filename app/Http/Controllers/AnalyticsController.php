@@ -57,7 +57,7 @@ class AnalyticsController extends Controller
     }
 
 
-    public function dashboard(MonthlyAdvanceIncome $chart)
+    public function dashboard()
     {
         $data = Order::get();
         $events = [];
@@ -72,6 +72,6 @@ class AnalyticsController extends Controller
         $last7days = Order::whereBetween('created_at', [Carbon::now(), Carbon::now()->subDays(-7)])->get();
         // dd($last7days);
         //return view('dashboard', compact('events'));
-        return view('dashboard', ['events' => $events, 'chart' => $chart->build(), 'upcoming' => $upcoming7days, 'latest' => $last7days]);
+        return view('dashboard', ['events' => $events, 'upcoming' => $upcoming7days, 'latest' => $last7days]);
     }
 }
