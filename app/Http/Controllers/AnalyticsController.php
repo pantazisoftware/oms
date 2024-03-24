@@ -52,8 +52,13 @@ class AnalyticsController extends Controller
         $change2 = (($totalWeekWeight - $pastWeekWeight) / $pastWeekWeight) * 100;
 
         $change2 = round($change2, 2);
-
-        return view('analytics', ['chart' => $chart->build(), 'currentWeekOrder' => $currentWeekOrder, 'totalWeekWeight' => $totalWeekWeight, 'pastWeekWeight' => $pastWeekWeight, 'pastWeekOrder' => $pastWeekOrder, 'change' => $change, 'changeWeight' => $change2, 'totalWeight' => $totalWeight, 'totalOrders' => $totalOrders, 'totalClients' => $totalClients]);
+        $commonWeight = Order::select('weight')
+            ->selectRaw('COUNT(*) AS count')
+            ->groupBy('weight')
+            ->orderByDesc('count')
+            ->limit(1)
+            ->get();
+        return view('analytics', ['chart' => $chart->build(), 'commonWeight' => $commonWeight, 'currentWeekOrder' => $currentWeekOrder, 'totalWeekWeight' => $totalWeekWeight, 'pastWeekWeight' => $pastWeekWeight, 'pastWeekOrder' => $pastWeekOrder, 'change' => $change, 'changeWeight' => $change2, 'totalWeight' => $totalWeight, 'totalOrders' => $totalOrders, 'totalClients' => $totalClients]);
     }
 
 
@@ -69,8 +74,7 @@ class AnalyticsController extends Controller
         }
 
         $upcoming7days = Order::whereBetween('pickup_date', [Carbon::today(), Carbon::today()->addDays(7)])->get();
-        $last7days = Order::whereBetween('created_at', [Carbon::now(), Carbon::now()->subDays(-7)])->get();
-        // dd($last7days);
+        $last7days = Order::whereDate('created_at', '>', Carbon::now()->subDays(7))->get();
         //return view('dashboard', compact('events'));
         return view('dashboard', ['events' => $events, 'upcoming' => $upcoming7days, 'latest' => $last7days]);
     }

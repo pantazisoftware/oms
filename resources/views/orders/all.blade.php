@@ -34,7 +34,7 @@
                         </div>
                     @endif
 
-                    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                         @foreach ($orders as $order)
                         <div class="flex flex-col overflow-hidden bg-white border border-gray-200 rounded-md">
                             <div class="flex flex-row items-center justify-between w-full p-3 bg-gray-100 border-b-4 border-gray-200">

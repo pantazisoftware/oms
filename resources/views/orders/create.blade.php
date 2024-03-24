@@ -28,28 +28,29 @@
                     @endif
 
                     <form action="{{ route('orders.store') }}" method="POST" class="flex flex-col w-full p-6 space-y-4 bg-gray-100 rounded-lg md:w-9/12 lg:w-6/12">
+                        <h2 class="font-bold">Create Order</h2>
                         <div class="flex flex-col space-y-2">
-                            <label for="name">Name</label>
+                            <label for="name" class="text-gray-600">Name</label>
                             <input type="text" name="name" value="{{ old('name') }}" id="name" class="px-3 py-2 border border-gray-300 rounded-lg focus:shadow-lg">
                         </div>
                         <div class="flex flex-col space-y-2">
-                            <label for="phone">Phone</label>
+                            <label for="phone" class="text-gray-600">Phone</label>
                             <input type="text" name="phone" value="{{ old('phone') }}" id="phone" class="px-3 py-2 border border-gray-300 rounded-lg focus:shadow-lg">
                         </div>
                         <div class="flex flex-col space-y-2">
-                            <label for="weight">Weight (kg)</label>
+                            <label for="weight" class="text-gray-600">Weight (kg)</label>
                             <input type="number" value="0" step=".1" value="{{ old('weight') }}" name="weight" id="weight" class="px-3 py-2 border border-gray-300 rounded-lg focus:shadow-lg">
                         </div>
                         <div class="flex flex-col space-y-2">
-                            <label for="details">Details</label>
+                            <label for="details" class="text-gray-600">Details</label>
                             <textarea name="details" id="details"  value="{{ old('details') }}" class="px-3 py-2 border border-gray-300 rounded-lg focus:shadow-lg" placeholder="Details about the order, any relevant info."></textarea>
                         </div>
                         <div class="flex flex-col space-y-2">
-                            <label for="pickup_date">Pickup Time</label>
+                            <label for="pickup_date" class="text-gray-600">Pickup Time</label>
                             <input type="datetime-local" name="pickup_date"  value="{{ old('pickup_date') }}" id="pickup_date" class="px-3 py-2 border border-gray-300 rounded-lg focus:shadow-lg">
                         </div>
                         <div class="flex flex-col space-y-2">
-                            <label for="advance_payment_amount">Advance Payment (lei)</label>
+                            <label for="advance_payment_amount" class="text-gray-600">Advance Payment (lei)</label>
                             <input type="number" name="advance_payment_amount" value="0" id="advance_payment_amount"  value="{{ old('advance_payment_amount') }}" class="px-3 py-2 border border-gray-300 rounded-lg focus:shadow-lg">
                             <input type="hidden" name="rest_payment_amount" value="0" />
                             <input type="hidden" name="notes" value="0" />
