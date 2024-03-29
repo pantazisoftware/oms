@@ -34,6 +34,28 @@ class OrdersController extends Controller
         return view('orders.upcoming', compact('orders'));
     }
 
+    public function search(Request $request)
+    {
+        if ($request->search !== null)
+        {
+            $orders = Order::where('name', 'LIKE', "%{$request->search}%")
+            ->orWhere('phone', 'LIKE', "%{$request->search}%")
+            ->orderBy('created_at', 'desc')
+            ->paginate(6);
+        }
+        if ($request->date !== null)
+        {
+            $orders = Order::whereDate('pickup_date', 'LIKE', "%{$request->date}%")
+                ->orderBy('pickup_date', 'desc')
+                ->paginate(6);
+
+
+        }
+
+        return view('orders.search', compact('orders', 'request'));
+
+    }
+
     /**
      * Show the form for creating a new resource.
      */

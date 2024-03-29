@@ -1,10 +1,12 @@
-<x-app-layout :title="'Today Orders'">
+<x-app-layout :title="'Search Orders'">
+    <div x-data="{ showModal: false, order: []}">
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Orders for Today') }}
+            Search result for <span class="text-indigo-600">{{ $request->search !== null ? $request->search : ''}} {{ ($request->search && $request->date ? ' from ' : '')}} {{ $request->date !== null ? \Carbon\Carbon::parse($request->date)->format('d-m-Y') : ''}}</span>
         </h2>
-        <a href="{{ route('orders.create')}}" class="inline-flex space-x-2 items-center px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-indigo-100 text-sm font-medium hover:text-white hover:shadow rounded">
+        <div class="h-full">
+            <a href="{{ route('orders.create')}}" class="inline-flex space-x-2 items-center px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-indigo-100 text-sm font-medium hover:text-white hover:shadow rounded">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 stroke-2">
   <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
 </svg>
@@ -12,23 +14,19 @@
             <span>New Order</span>
         </a>
         </div>
-    </x-slot>
 
-   <div class="py-8" x-data="{ showModal: false, order: [] }">
+        </div>
+    </x-slot>
+    <div class="py-8">
         <div class="mx-auto max-w-7xl">
             <div class="overflow-hidden sm:rounded-lg">
                 <div class="p-3 text-gray-900 sm:p-0">
                     @if($orders->isEmpty())
                     <div class="p-4 my-3 rounded bg-sky-200 text-sky-800">
-                        <p>No orders for today.</p>
+                        <p>No orders found based on search term.</p>
                     </div>
                     @endif
 
-                    @if(session()->has('success'))
-                        <div class="p-4 my-3 rounded-lg bg-emerald-100 text-emerald-800">
-                            <p>{{ session()->get('success') }}</p>
-                        </div>
-                    @endif
 
                     <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                         @foreach ($orders as $order)
@@ -275,5 +273,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </x-app-layout>

@@ -113,29 +113,10 @@
                                 <div id="field" class="inline-flex items-center px-1 space-x-1">
                                     <span class="font-medium text-black">{{ $order->details }}</span>
                                 </div>
-                                {{-- @if ($order->notes !== "0")
-                                <div class="flex flex-col p-2 space-y-2 bg-gray-100 rounded">
-                                    <div id="field" class="inline-flex items-center space-x-1">
-                                    <div class="p-2 rounded bg-slate-300 text-slate-700">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                                        <path fill-rule="evenodd" d="M4.848 2.771A49.144 49.144 0 0 1 12 2.25c2.43 0 4.817.178 7.152.52 1.978.292 3.348 2.024 3.348 3.97v6.02c0 1.946-1.37 3.678-3.348 3.97a48.901 48.901 0 0 1-3.476.383.39.39 0 0 0-.297.17l-2.755 4.133a.75.75 0 0 1-1.248 0l-2.755-4.133a.39.39 0 0 0-.297-.17 48.9 48.9 0 0 1-3.476-.384c-1.978-.29-3.348-2.024-3.348-3.97V6.741c0-1.946 1.37-3.68 3.348-3.97ZM6.75 8.25a.75.75 0 0 1 .75-.75h9a.75.75 0 0 1 0 1.5h-9a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H7.5Z" clip-rule="evenodd" />
-                                        </svg>
-
-
-                                    </div>
-                                    <p>Notes:</p>
-
-                                </div>
-                                <div id="field" class="inline-flex items-center px-1 space-x-1">
-                                    <span class="font-medium text-black">{{ $order->notes }}</span>
-                                </div>
-                                </div>
-                                 @endif --}}
 
                                 <div class="relative flex flex-row w-full gap-2 overflow-hidden rounded-lg justify-evenly">
 
-                                    <button
-        x-on:click.prevent="$dispatch('open-modal', 'notes{{$order->id}}');" class="inline-flex items-center justify-center w-full py-2 space-x-2 overflow-hidden text-sm font-medium text-gray-800 border border-gray-200 rounded-l-lg hover:bg-gray-200">
+                                    <button x-on:click.prevent="$dispatch('open-modal', 'notes{{$order->id}}');" class="inline-flex items-center justify-center w-full py-2 space-x-2 overflow-hidden text-sm font-medium text-gray-800 border border-gray-200 rounded-l-lg hover:bg-gray-200">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                                         <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
                                         </svg>
@@ -273,6 +254,10 @@
                     <!-- end of modal -->
                         @endforeach
                     </div>
+
+
+                    </div>
+
                     <div class="my-3">
                         {{ $orders->links()}}
                     </div>

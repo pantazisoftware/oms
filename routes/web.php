@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/orders/storePayment', [OrdersController::class, 'storePayment'])->name('orders.storePayments');
     Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics'); // Add this line
     Route::get('/', [AnalyticsController::class, 'dashboard'])->name('dashboard'); // Add this line
-
+    Route::get('/search/{search?}/{date?}', [OrdersController::class, 'search'])->name('search'); // Add
 });
 
 require __DIR__.'/auth.php';

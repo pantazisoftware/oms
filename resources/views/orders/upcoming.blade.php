@@ -14,7 +14,7 @@
         </div>
     </x-slot>
 
-    <div class="py-8">
+    <div class="py-8" x-data="{ showModal: false, order: [] }">
         <div class="mx-auto max-w-7xl">
             <div class="overflow-hidden sm:rounded-lg">
                 <div class="p-3 text-gray-900 sm:p-0">
