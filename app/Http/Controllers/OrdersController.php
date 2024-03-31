@@ -83,7 +83,7 @@ class OrdersController extends Controller
             ];
             $order_notes = [
                 'order_id' => $request->order_id,
-                'content' => "[💰] Am modificat avansul la $request->advance_payment_amount lei de la $request->order_advance lei!"
+                'content' => "[💰] I changed the advance received from $request->order_advance to [ $request->advance_payment_amount ] lei!"
             ];
             $order = Order::where('id', $request->order_id)->update($data);
             $notes = Note::where('order_id', $request->order_id)->create($order_notes);
@@ -95,7 +95,7 @@ class OrdersController extends Controller
             ];
             $order_notes = [
                 'order_id' => $request->order_id,
-                'content' => "[💰] Am primit $request->rest_payment_amount lei la predare!"
+                'content' => "[💰] I received [ $request->rest_payment_amount ] lei upon order delivery!"
             ];
             $order = Order::where('id', $request->order_id)->update($data);
             $notes = Note::where('order_id', $request->order_id)->create($order_notes);

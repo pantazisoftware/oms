@@ -13,9 +13,41 @@
 }
 
 .btn-primary {
-  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+  @apply bg-indigo-500 text-white py-2 px-4 rounded border-none outline-none font-medium;
 }
 
+.btn-primary .active:focus {
+    @apply shadow-none;
+}
+.btn-primary:hover {
+    @apply bg-indigo-600;
+}
+
+.active {
+    @apply !bg-indigo-700;
+}
+.fc-event-title {
+    @apply font-bold;
+}
+.fc-event-time {
+    @apply text-sm text-indigo-200 italic;
+}
 .fc-toolbar-title {
   @apply font-bold !text-base;
+}
+
+.fc-today-button {
+    @apply !bg-black !text-white;
+}
+
+.fc-event {
+    @apply text-white bg-indigo-500 border border-indigo-600;
+}
+
+.fc-event:hover {
+    @apply bg-indigo-600;
+}
+
+.fc-daygrid-event-dot {
+    @apply w-2 h-2 rounded-full bg-lime-400 border-none;
 }
