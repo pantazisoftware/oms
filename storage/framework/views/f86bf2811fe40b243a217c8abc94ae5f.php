@@ -1,0 +1,1 @@
+<div id="<?php echo $chart->getId(); ?>"></div><?php /**PATH /Users/eduard-air/2024/oms/resources/views/vendor/apexcharts/container.blade.php ENDPATH**/ ?>
