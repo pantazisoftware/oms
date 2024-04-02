@@ -2,9 +2,15 @@
     <div x-data="{ showModal: false, order: []}">
     <x-slot name="header">
         <div class="flex items-center justify-between">
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Orders') }}
-        </h2>
+            <div>
+                <h2 class="text-xl font-semibold leading-tight text-gray-800">
+                    {{ __('Orders') }}
+                </h2>
+                <p class="italic text-xs text-gray-500">
+                    Sorted by order date
+                </p>
+            </div>
+
         <div class="h-full">
             <a href="{{ route('orders.create')}}" class="inline-flex space-x-2 items-center px-4 py-2.5 text-white bg-indigo-500 hover:bg-indigo-600 text-sm font-medium  hover:shadow rounded">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 stroke-2">
@@ -35,7 +41,7 @@
 
                     <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                         @foreach ($orders as $order)
-                        <div class="flex flex-col overflow-hidden bg-white border border-gray-100 rounded-lg">
+                        <div class="flex flex-col overflow-hidden border border-gray-100 bg-gradient-to-b to-white via-white rounded-lg {{ ($order->pickup_date < \Carbon\Carbon::today()) ? 'from-teal-100 opacity-65' : 'from-white' }}">
                             <div class="flex flex-row items-center justify-between w-full p-3 border-b border-gray-200">
                                 <div class="flex flex-col">
                                     <a href="/search/{{ $order->name }}" class="inline-flex items-center space-x-1 text-lg font-medium hover:text-black hover:underline">
@@ -65,7 +71,7 @@
 
 
                             </div>
-                            <div class="flex flex-col p-3 space-y-4 text-gray-500 bg-white">
+                            <div class="flex flex-col p-3 space-y-4 text-gray-500">
                                 <div id="field" class="inline-flex items-center space-x-2">
                                     <div class="text-gray-600">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
@@ -171,7 +177,7 @@
                                 Notes for #{{$order->id}} / {{$order->name}}
                             </h2>
 
-                            <div class="flex flex-col my-2 space-y-2 overflow-y-scroll divide-y divide-gray-200 h-[400px] border-b border-gray-200">
+                            <div class="flex flex-col my-2 space-y-2 overflow-y-auto divide-y divide-gray-200 max-h-[400px] border-b border-gray-200">
 
                                 @forelse($order->note->sortByDesc('created_at') as $note)
                                     <p class="flex flex-col items-start p-2 space-x-2 md:flex-row">

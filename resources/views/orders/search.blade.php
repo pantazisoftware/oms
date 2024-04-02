@@ -20,10 +20,31 @@
     <div class="py-8">
         <div class="mx-auto max-w-7xl">
             <div class="overflow-hidden sm:rounded-lg">
+
+                <div class="px-3 my-3 md:px-0">
+                        <form action="{{ route('search') }}" method="GET" class="flex flex-row items-center justify-center w-full mx-auto overflow-hidden bg-white border border-gray-100 rounded-lg group md:w-6/12">
+                            <label for="search" class="w-full">
+                            <input type="text" name="search" id="search" class="flex-1 w-full h-full p-3 text-sm bg-transparent border-0 focus:ring-0" value="{{ $request->search }}" placeholder="Search orders by name or phone">
+                            </label>
+                            <div id="hide" class="border-l border-gray-200">
+                                <label for="date">
+                                    <input type="date" placeholder="Choose date" value="{{ \Carbon\Carbon::parse($request->date)->format('d-m-Y') }}" name="date" id="date" class="w-40 h-full p-3 text-sm bg-transparent border-0 focus:border-transparent focus:outline-none focus:ring-0" placeholder="Search by date...">
+                                </label>
+                            </div>
+                            <div id="hide" class="h-full px-3 border-l border-gray-200">
+                                <label for="open">
+                                    <input type="checkbox" value="{{ \Carbon\Carbon::parse($request->date)->format('d-m-Y') }}" name="date" id="date" class="border-gray-500 rounded">
+                                    <p class="text-xs text-gray-500 text-nowrap">Open Order</p>
+                                </label>
+                            </div>
+                            <button class="w-40 px-4 py-3 overflow-hidden text-sm font-medium text-white bg-indigo-500 hover:bg-indigo-600" type="submit">Search</button>
+                        </form>
+                    </div>
+
                 <div class="p-3 text-gray-900 sm:p-0">
                     @if($orders->isEmpty())
                     <div class="p-4 my-3 text-gray-800 bg-gray-200 rounded">
-                        <p>No orders based on your search.</p>
+                        <p>No orders for today.</p>
                     </div>
                     @endif
 
@@ -35,7 +56,7 @@
 
                     <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                         @foreach ($orders as $order)
-                        <div class="flex flex-col overflow-hidden bg-white border border-gray-100 rounded-lg">
+                        <div class="flex flex-col overflow-hidden border border-gray-100 bg-gradient-to-b to-white via-white rounded-lg {{ ($order->pickup_date < \Carbon\Carbon::today()) ? 'from-teal-100 opacity-65' : 'from-white' }}">
                             <div class="flex flex-row items-center justify-between w-full p-3 border-b border-gray-200">
                                 <div class="flex flex-col">
                                     <a href="/search/{{ $order->name }}" class="inline-flex items-center space-x-1 text-lg font-medium hover:text-black hover:underline">
@@ -65,7 +86,7 @@
 
 
                             </div>
-                            <div class="flex flex-col p-3 space-y-4 text-gray-500 bg-white">
+                            <div class="flex flex-col p-3 space-y-4 text-gray-500">
                                 <div id="field" class="inline-flex items-center space-x-2">
                                     <div class="text-gray-600">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
@@ -171,7 +192,7 @@
                                 Notes for #{{$order->id}} / {{$order->name}}
                             </h2>
 
-                            <div class="flex flex-col my-2 space-y-2 overflow-y-scroll divide-y divide-gray-200 h-[400px] border-b border-gray-200">
+                            <div class="flex flex-col my-2 space-y-2 overflow-y-auto divide-y divide-gray-200 max-h-[400px] border-b border-gray-200">
 
                                 @forelse($order->note->sortByDesc('created_at') as $note)
                                     <p class="flex flex-col items-start p-2 space-x-2 md:flex-row">
