@@ -6,8 +6,8 @@
                 <h2 class="text-xl font-semibold leading-tight text-gray-800">
                     {{ __('Orders') }}
                 </h2>
-                <p class="italic text-xs text-gray-500">
-                    Sorted by order date
+                <p class="text-xs italic text-gray-500">
+                    <span>Page grab page query param.... | </span><span>Sorted by order date</span>
                 </p>
             </div>
 
