@@ -101,6 +101,7 @@
                    </div>
 
                     <h2 class="py-1 font-bold">Anual Orders - <?php echo e(date("Y")); ?></h2>
+                    <p class="text-xs text-gray-500">Orders grouped by pickup date.</p>
                        <?php echo $chart->container(); ?>
 
 

@@ -2,8 +2,12 @@
     <div x-data="{ showModal: false, order: []}">
     <x-slot name="header">
         <div class="flex items-center justify-between">
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Upcoming Orders') }}
+            <div>
+                <h2 class="text-xl font-semibold leading-tight text-gray-800">
+                    {{ __('Upcoming Orders') }}</h2>
+                <span class="text-xs text-gray-500">{{$orders->count()}} Orders for Upcoming period</span>
+            </div>
+
         </h2>
         <div class="h-full">
             <a href="{{ route('orders.create')}}" class="inline-flex space-x-2 items-center px-4 py-2.5 text-white bg-indigo-500 hover:bg-indigo-600 text-sm font-medium  hover:shadow rounded">
@@ -171,7 +175,7 @@
                                 Notes for #{{$order->id}} / {{$order->name}}
                             </h2>
 
-                            <div class="flex flex-col my-2 space-y-2 overflow-y-scroll divide-y divide-gray-200 h-[400px] border-b border-gray-200">
+                            <div class="flex flex-col my-2 space-y-2 overflow-y-auto divide-y divide-gray-200 max-h-[400px] border-b border-gray-200">
 
                                 @forelse($order->note->sortByDesc('created_at') as $note)
                                     <p class="flex flex-col items-start p-2 space-x-2 md:flex-row">

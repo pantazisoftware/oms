@@ -11,8 +11,11 @@
     <div x-data="{ showModal: false, order: []}">
      <?php $__env->slot('header', null, []); ?> 
         <div class="flex items-center justify-between">
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            <?php echo e(__('Upcoming Orders')); ?>
+            <div>
+                <h2 class="text-xl font-semibold leading-tight text-gray-800">
+                    <?php echo e(__('Upcoming Orders')); ?></h2>
+                <span class="text-xs text-gray-500"><?php echo e($orders->count()); ?> Orders for Upcoming period</span>
+            </div>
 
         </h2>
         <div class="h-full">
@@ -192,7 +195,7 @@
 
                             </h2>
 
-                            <div class="flex flex-col my-2 space-y-2 overflow-y-scroll divide-y divide-gray-200 h-[400px] border-b border-gray-200">
+                            <div class="flex flex-col my-2 space-y-2 overflow-y-auto divide-y divide-gray-200 max-h-[400px] border-b border-gray-200">
 
                                 <?php $__empty_1 = true; $__currentLoopData = $order->note->sortByDesc('created_at'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $note): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                     <p class="flex flex-col items-start p-2 space-x-2 md:flex-row">

@@ -40,12 +40,6 @@
                                     <input type="date" placeholder="Choose date" value="<?php echo e(\Carbon\Carbon::parse($request->date)->format('d-m-Y')); ?>" name="date" id="date" class="w-40 h-full p-3 text-sm bg-transparent border-0 focus:border-transparent focus:outline-none focus:ring-0" placeholder="Search by date...">
                                 </label>
                             </div>
-                            <div id="hide" class="h-full px-3 border-l border-gray-200">
-                                <label for="open">
-                                    <input type="checkbox" value="<?php echo e(\Carbon\Carbon::parse($request->date)->format('d-m-Y')); ?>" name="date" id="date" class="border-gray-500 rounded">
-                                    <p class="text-xs text-gray-500 text-nowrap">Open Order</p>
-                                </label>
-                            </div>
                             <button class="w-40 px-4 py-3 overflow-hidden text-sm font-medium text-white bg-indigo-500 hover:bg-indigo-600" type="submit">Search</button>
                         </form>
                     </div>

@@ -91,6 +91,7 @@
                    </div>
 
                     <h2 class="py-1 font-bold">Anual Orders - {{ date("Y")}}</h2>
+                    <p class="text-xs text-gray-500">Orders grouped by pickup date.</p>
                        {!! $chart->container() !!}
 
                 </div>

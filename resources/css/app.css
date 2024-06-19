@@ -23,8 +23,11 @@
     @apply bg-indigo-600;
 }
 
-.active {
+.btn .btn-primary .active {
     @apply !bg-indigo-700;
+}
+.apexcharts-tooltip-series-group .active {
+    @apply !bg-white;
 }
 .fc-event-title {
     @apply font-bold;

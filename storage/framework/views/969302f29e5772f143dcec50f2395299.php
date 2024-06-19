@@ -13,12 +13,10 @@
         <div class="flex items-center justify-between">
             <div>
                 <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                    <?php echo e(__('Orders')); ?>
+                    <?php echo e(__('All Orders')); ?>
 
                 </h2>
-                <p class="text-xs italic text-gray-500">
-                    <span>Page grab page query param.... | </span><span>Sorted by order date</span>
-                </p>
+
             </div>
 
         <div class="h-full">
